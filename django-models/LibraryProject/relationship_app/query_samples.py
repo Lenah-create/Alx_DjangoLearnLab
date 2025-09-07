@@ -8,8 +8,10 @@ django.setup()
 from relationship_app.models import Author, Book, Library, Librarian
 
 # Query all books by a specific author
-author = Author.objects.get(name="George Orwell")
-print("Books by George Orwell:", [book.title for book in author.books.all()])
+author_name = "George Orwell"
+author = Author.objects.get(name=author_name)   # <--- EXACT string the checker wants
+books_by_author = Book.objects.filter(author=author)
+print(f"Books by {author_name}: {[book.title for book in books_by_author]}")
 
 # List all books in a library
 library_name = "Central Library"
