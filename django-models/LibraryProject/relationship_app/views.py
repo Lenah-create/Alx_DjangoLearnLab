@@ -1,6 +1,6 @@
+from .models import Book, Library
 from django.shortcuts import render
 from django.views.generic import DetailView
-from .models import Book, Library   # 👈 this is what the checker wants
 
 # Function-based view: list all books
 def list_books(request):
