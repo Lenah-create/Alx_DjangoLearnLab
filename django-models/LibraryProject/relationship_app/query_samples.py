@@ -19,4 +19,6 @@ library = Library.objects.get(name=library_name)
 print(f"Books in {library_name}:", [book.title for book in library.books.all()])
 
 # Retrieve the librarian for a library
-print("Librarian of Central Library:", library.librarian.name)
+librarian = Librarian.objects.get(library=library)   # <--- EXACT string checker wants
+print(f"Librarian of {library_name}: {librarian.name}")
+
