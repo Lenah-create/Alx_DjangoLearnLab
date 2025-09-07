@@ -4,7 +4,7 @@ from .models import Library
 from .models import Book
 from django.shortcuts import render, redirect
 from django.views.generic.detail import DetailView
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login, logout
 
 # Function-based view: list all books
@@ -19,7 +19,7 @@ class LibraryDetailView(DetailView):
     context_object_name = "library"
 
 # Registration view
-def register_view(request):
+def register(request):
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
