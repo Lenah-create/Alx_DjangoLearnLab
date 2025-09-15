@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.detail import DetailView
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.decorators import permission_required
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import Book, Library
@@ -56,7 +57,7 @@ def logout_view(request):
 # Custom Permissions Views: Add, Edit, Delete Books
 # -------------------------
 @permission_required('relationship_app.can_add_book')
-def add_book(request):
+def add_book_view(request):
     if request.method == "POST":
         form = BookForm(request.POST)
         if form.is_valid():
