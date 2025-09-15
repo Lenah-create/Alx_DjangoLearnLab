@@ -1,27 +1,14 @@
-# relationship_app/views.py
-from django.shortcuts import render, get_object_or_404
-from django.views.generic import DetailView
-from .models import Book, Library  # Make sure your models include Book and Library
+from django.shortcuts import render
+from django.views.generic.detail import DetailView
+from .models import Library, Book  # <-- You need Library imported for the CBV
 
-# -------------------------
 # Function-based view
-# -------------------------
 def list_books(request):
-    """
-    Render a list of all books with their authors.
-    """
-    books = Book.objects.all()  # Must use this for the checker
-    return render(request, 'relationship_app/list_books.html', {'books': books})
+    books = Book.objects.all()
+    return render(request, "list_books.html", {"books": books})
 
-
-# -------------------------
 # Class-based view
-# -------------------------
 class LibraryDetailView(DetailView):
-    """
-    Display details of a specific library and list all books in it.
-    """
-    model = Library
-    template_name = 'relationship_app/library_detail.html'
-    context_object_name = 'library'
-
+    model = Library  # <-- Uses Library model
+    template_name = "library_detail.html"
+    context_object_name = "library"
