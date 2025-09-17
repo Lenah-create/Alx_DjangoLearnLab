@@ -24,8 +24,15 @@ SESSION_COOKIE_SECURE = True             # Session cookies only sent via HTTPS
 CSRF_COOKIE_HTTPONLY = True              # Prevents JS access to CSRF cookie
 SESSION_COOKIE_HTTPONLY = True           # Prevents JS access to session cookie
 
+
+# HTTP Strict Transport Security (HSTS)
+SECURE_HSTS_SECONDS = 31536000          # One year in seconds
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True   # Include subdomains in HSTS policy
+SECURE_HSTS_PRELOAD = True              # Allow site to be preloaded by browsers
+
 # Optional: Force HTTPS
 SECURE_SSL_REDIRECT = True               # Redirect HTTP -> HTTPS
+
 
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
@@ -49,6 +56,8 @@ INSTALLED_APPS = [
     'relationship_app',  # relationship app
 
     'csp',
+
+    'sslserver',
 ]
 
 MIDDLEWARE = [
