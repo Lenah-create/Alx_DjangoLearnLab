@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zw-^oi3e#z8nlmzuw0kd76_l^js6weiqgsflt9kia4*&6bk@%l'
+SECRET_KEY = 'django-insecure-12bu+#8)lu$rvwut#%-_gp%8nnd)6rfw9#a3=hvd@c9g($cl1y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users',
+    'relationship_app',
+    'bookshelf.apps.BookshelfConfig',
 ]
 
 MIDDLEWARE = [
@@ -98,6 +101,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'users.CustomUser'
+
+
+# Optional: media files for profile photos
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
