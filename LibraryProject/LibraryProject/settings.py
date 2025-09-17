@@ -30,6 +30,10 @@ SECURE_HSTS_SECONDS = 31536000          # One year in seconds
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True   # Include subdomains in HSTS policy
 SECURE_HSTS_PRELOAD = True              # Allow site to be preloaded by browsers
 
+# Secure headers for reverse proxy / load balancer
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+
 # Optional: Force HTTPS
 SECURE_SSL_REDIRECT = True               # Redirect HTTP -> HTTPS
 
