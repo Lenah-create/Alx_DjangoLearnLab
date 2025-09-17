@@ -37,9 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD:advanced_features_and_security/Introduction_to_Django/LibraryProject/LibraryProject/settings.py
+    'bookshelf',
+    'relationship_app'
+=======
     'users',
     'relationship_app',
-    'bookshelf.apps.BookshelfConfig',
+    'bookshelf',
+>>>>>>> e9111a16da3f1b89bf08c90f5d93b63769ffb2ec:LibraryProject/settings.py
 ]
 
 MIDDLEWARE = [
