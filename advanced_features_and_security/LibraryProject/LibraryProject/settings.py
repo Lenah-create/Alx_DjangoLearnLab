@@ -11,7 +11,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-12bu+#8)lu$rvwut#%-_gp%8nnd)6rfw9#a3=hvd@c9g($cl1y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+# Browser security headers
+SECURE_BROWSER_XSS_FILTER = True         # Enables XSS protection in modern browsers
+SECURE_CONTENT_TYPE_NOSNIFF = True       # Prevents the browser from guessing content types
+X_FRAME_OPTIONS = 'DENY'                 # Protects against clickjacking
+
+# Cookie security
+CSRF_COOKIE_SECURE = True                # CSRF cookies only sent via HTTPS
+SESSION_COOKIE_SECURE = True             # Session cookies only sent via HTTPS
+CSRF_COOKIE_HTTPONLY = True              # Prevents JS access to CSRF cookie
+SESSION_COOKIE_HTTPONLY = True           # Prevents JS access to session cookie
+
+# Optional: Force HTTPS
+SECURE_SSL_REDIRECT = True               # Redirect HTTP -> HTTPS
+
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'")
+CSP_SCRIPT_SRC = ("'self'",)
 
 ALLOWED_HOSTS = []
 
@@ -29,6 +47,8 @@ INSTALLED_APPS = [
     'users',             # custom user model app
     'bookshelf',         # bookshelf app
     'relationship_app',  # relationship app
+
+    'csp',
 ]
 
 MIDDLEWARE = [
@@ -39,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'csp.middleware.CSPMiddleware',
 ]
 
 ROOT_URLCONF = 'LibraryProject.urls'
