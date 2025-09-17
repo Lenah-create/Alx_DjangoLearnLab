@@ -39,7 +39,6 @@ class CustomUser(AbstractUser):
 class Book(models.Model):
     title = models.CharField(max_length=200)
     author = models.CharField(max_length=200)
-    description = models.TextField(blank=True, null=True)
     published_date = models.DateField(blank=True, null=True)
 
     class Meta:
