@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import permission_required
 from .models import Book
 from .models import Library 
 from .forms import BookForm # pyright: ignore[reportMissingImports]
+from .forms import ExampleForm
 
 # -------------------------
 # Function-based view: list all books
