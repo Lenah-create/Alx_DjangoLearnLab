@@ -79,8 +79,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# ✅ Use custom user model
+# Use custom user model
 AUTH_USER_MODEL = 'users.CustomUser'
+
+AUTH_USER_MODEL = "bookshelf.CustomUser"
 
 # Optional: media files for profile photos
 MEDIA_URL = '/media/'
