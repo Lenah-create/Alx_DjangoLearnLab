@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.detail import DetailView
 from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.decorators import login_required, permission_required
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
 from .models import Book
 from .models import Library 
 from .forms import BookForm # pyright: ignore[reportMissingImports]
@@ -94,3 +94,14 @@ def delete_book(request, book_id):
         book.delete()
         return redirect('book_list')
     return render(request, "relationship_app/delete_book.html", {"book": book})
+
+@permission_required('bookshelf.can_create', raise_exception=True)
+def add_book_view(request):
+    if request.method == "POST":
+        form = BookForm(request.POST)
+        if form.is_valid():  # Validation prevents malicious input
+            form.save()
+            return redirect('book_list')
+    else:
+        form = BookForm()
+    return render(request, 'bookshelf/form_example.html', {'form': form})
