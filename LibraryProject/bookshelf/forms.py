@@ -4,4 +4,9 @@ from .models import Book
 class BookForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'author', 'published_date', 'isbn']  # adjust fields to match your Book model
+        fields = ['title', 'author', 'published_date', 'isbn'] 
+
+class ExampleForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = ['title', 'author', 'description'] 
