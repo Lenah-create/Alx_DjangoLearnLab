@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required, permission_required
 
 from .models import Book, Library
-from .forms import BookForm  
+from .forms import BookForm   # pyright: ignore[reportMissingImports]
 
 # -------------------------
 # Function-based view: list all books
