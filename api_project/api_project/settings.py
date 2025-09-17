@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
      # Third-party apps
     'rest_framework',
+    'rest_framework.authtoken', 
 
     # Your apps
     'api',
@@ -73,6 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'api_project.wsgi.application'
+
 
 
 # Database
