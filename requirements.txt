@@ -1,1 +1,1 @@
-django\ndjangorestframework
+django>=5.0\ndjangorestframework
