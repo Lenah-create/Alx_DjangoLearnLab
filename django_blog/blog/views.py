@@ -6,7 +6,6 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .forms import CustomUserCreationForm, PostForm, CommentForm
 from .models import Post, Comment
-from .forms import CommentForm
 
 # --------------------------
 # Authentication Views
@@ -92,7 +91,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return self.request.user == post.author
 
 # --------------------------
-# Comment Views
+# Comment CRUD Views
 # --------------------------
 
 @login_required
