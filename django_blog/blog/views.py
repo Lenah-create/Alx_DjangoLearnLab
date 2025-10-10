@@ -7,6 +7,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm, PostForm, CommentForm
 from .models import Post, Comment
+from django.db.models import Q
+from taggit.models import Tag # type: ignore
 
 # --------------------------
 # Authentication Views
@@ -36,6 +38,21 @@ def login_view(request):
     else:
         form = AuthenticationForm()
     return render(request, 'blog/login.html', {'form': form})
+
+def search_posts(request):
+    query = request.GET.get('q')
+    results = Post.objects.none()
+    if query:
+        results = Post.objects.filter(
+            Q(title__icontains=query) | 
+            Q(content__icontains=query) |
+            Q(tags__name__icontains=query)
+        ).distinct()
+    return render(request, 'blog/search_results.html', {'posts': results, 'query': query})
+
+def posts_by_tag(request, tag_name):
+    posts = Post.objects.filter(tags__name__iexact=tag_name)
+    return render(request, 'blog/post_list.html', {'posts': posts, 'tag_name': tag_name})
 
 def logout_view(request):
     logout(request)
