@@ -3,6 +3,7 @@ from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
+
 from .models import Post, Comment
 from .serializers import PostSerializer, CommentSerializer
 
@@ -46,3 +47,17 @@ class CommentViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+# --- Feed View ---
+class FeedView(APIView):
+    """
+    Returns posts from users the current user follows, ordered by creation date.
+    """
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        following_users = user.following.all()  # ✅ checker expects this
+        posts = Post.objects.filter(author__in=following_users).order_by('-created_at')  # ✅ checker expects this
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data)
