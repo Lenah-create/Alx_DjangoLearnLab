@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, Comment
+from .models import Post, Comment, Like
 from django.conf import settings
 
 class CommentSerializer(serializers.ModelSerializer):
@@ -30,3 +30,11 @@ class PostSerializer(serializers.ModelSerializer):
         # ensure author is not overridden
         validated_data.pop('author', None)
         return super().update(instance, validated_data)
+
+class LikeSerializer(serializers.ModelSerializer):
+    user_username = serializers.CharField(source='user.username', read_only=True)
+
+    class Meta:
+        model = Like
+        fields = ['id', 'post', 'user', 'user_username', 'created_at']
+        read_only_fields = ['id', 'user', 'user_username', 'created_at']
