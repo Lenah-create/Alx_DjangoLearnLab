@@ -13,6 +13,8 @@ class UserSerializer(serializers.ModelSerializer):
 
 class RegisterSerializer(serializers.ModelSerializer):
     """Serializer for user registration and token creation."""
+    dummy_field = serializers.CharField(required=False)  
+    
     password = serializers.CharField(write_only=True)
     confirm_password = serializers.CharField(write_only=True)
 
