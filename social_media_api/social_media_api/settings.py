@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qai7&54vvmu32zur=)tw_96pnza%hv)m-v9#bl!rlepbre#470'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # SECURITY — use environment variables in production
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'unsafe-dev-key')
@@ -37,7 +37,7 @@ X_FRAME_OPTIONS = 'DENY'
 SECURE_SSL_REDIRECT = os.environ.get('DJANGO_SECURE_SSL_REDIRECT', 'False') == 'True'
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['lenah-social-api.herokuapp.com']
 
 
 # Application definition
